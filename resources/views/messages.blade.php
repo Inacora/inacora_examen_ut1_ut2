@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensajes</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/messages.css') }}">
 </head>
 <body>
     <div class="container">
@@ -14,7 +14,10 @@
         @else
             <ul>
                 @foreach($messages as $message)
-                    <li>{{ $message->text }}</li>
+                    <li style= "text-decoration: {{ e($message->subrayado) }}" style= "font-weight: {{ e($message->negrita) }}">{{ $message->text }}</li>
+                    <form action="{{ route('message.edit', $message->id) }}" method="GET">
+                        <button type="submit" class="button">Editar</button>
+                    </form>
                 @endforeach
             </ul>
         @endif
